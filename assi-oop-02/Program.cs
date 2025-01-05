@@ -10,7 +10,23 @@ namespace assi_oop_02
         private int SecurityLevel { get; set; }
         private decimal Salary { get; set; }
         private DateTime HireDate { get; set; }
-        private string Gender { get; set; }
+        private string _gender; 
+
+        public string Gender
+        {
+            get { return _gender; }
+            set
+            {
+                if (value == "M" || value == "F")
+                {
+                    _gender = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid Gender. Please use 'M' for Male or 'F' for Female.");
+                }
+            }
+        }
 
         public Employee(int id, string name, int securityLevel, decimal salary, DateTime hireDate, string gender)
         {
@@ -78,28 +94,40 @@ namespace assi_oop_02
     {
         static void Main(string[] args)
         {
-            #region q-01
-            Employee emp = new Employee(1, "Sayed Mohamed", 3, 60000.00m, new DateTime(2020, 5, 1), "Male");
+            try
+            {
+                #region q-01
+                Employee emp = new Employee(1, "Sayed Mohamed", 3, 60000.00m, new DateTime(2020, 5, 1), "M");
 
-            Console.WriteLine("Employee Details:");
-            emp.DisplayEmployeeInfo();
+                Console.WriteLine("Employee Details:");
+                emp.DisplayEmployeeInfo();
 
-            Console.WriteLine("\nUpdating Salary...");
-            emp.UpdateSalary(55000.00m);
+                Console.WriteLine("\nUpdating Salary...");
+                emp.UpdateSalary(55000.00m);
 
-            Console.WriteLine("\nPromoting Employee...");
-            emp.Promote(5);
+                Console.WriteLine("\nPromoting Employee...");
+                emp.Promote(5);
 
-            Console.WriteLine("\nFinal Employee Details:");
-            emp.DisplayEmployeeInfo();
-            #endregion
+                Console.WriteLine("\nFinal Employee Details:");
+                emp.DisplayEmployeeInfo();
+                #endregion
 
-            #region q-02
-            HiringDate hireDate = new HiringDate(5, 5, 2020);
+                #region q-02
+                HiringDate hireDate = new HiringDate(5, 5, 2020);
 
-            Console.WriteLine("\nHiring Date Details::");
-            hireDate.DisplayHiringDate();
-            #endregion
+                Console.WriteLine("\nHiring Date Details:");
+                hireDate.DisplayHiringDate();
+                #endregion
+
+                #region q-03
+                Console.WriteLine("\nTesting invalid gender:");
+                emp.Gender = "X"; 
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
     }
 }
