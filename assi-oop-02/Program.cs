@@ -21,6 +21,7 @@ namespace assi_oop_02
         private decimal Salary { get; set; }
         private DateTime HireDate { get; set; }
         private string _gender;
+        public SecurityPrivilege Privilege { get; set; }
 
         public string Gender
         {
@@ -37,8 +38,6 @@ namespace assi_oop_02
                 }
             }
         }
-
-        public SecurityPrivilege Privilege { get; set; }
 
         public Employee(int id, string name, int securityLevel, decimal salary, DateTime hireDate, string gender, SecurityPrivilege privilege)
         {
@@ -80,6 +79,21 @@ namespace assi_oop_02
                 Console.WriteLine("Invalid promotion. New security level must be higher than the current level.");
             }
         }
+
+        public override string ToString()
+        {
+            
+            return string.Format(
+                "ID: {0}\nName: {1}\nSecurity Level: {2}\nSalary: {3}\nHire Date: {4}\nGender: {5}\nPrivilege: {6}",
+                ID,
+                Name,
+                SecurityLevel,
+                String.Format("{0:C}", Salary),
+                HireDate.ToString("yyyy-MM-dd"),
+                Gender,
+                Privilege
+            );
+        }
     }
     #endregion
 
@@ -104,14 +118,17 @@ namespace assi_oop_02
     }
     #endregion
 
+
     class Program
     {
         static void Main(string[] args)
         {
+            Employee emp = null;
+
             try
             {
                 #region Q01 
-                Employee emp = new Employee(1, "Sayed Mohamed", 3, 60000.00m, new DateTime(2020, 5, 1), "M", SecurityPrivilege.Developer);
+                emp = new Employee(1, "Sayed Mohamed", 3, 60000.00m, new DateTime(2020, 5, 1), "M", SecurityPrivilege.Developer);
 
                 Console.WriteLine("Employee Details:");
                 emp.DisplayEmployeeInfo();
@@ -133,7 +150,7 @@ namespace assi_oop_02
                 hireDate.DisplayHiringDate();
                 #endregion
 
-                #region Q03 =
+                #region Q03
                 Console.WriteLine("\nTesting invalid gender:");
                 emp.Gender = "X";
                 #endregion
@@ -141,6 +158,12 @@ namespace assi_oop_02
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            if (emp != null)
+            {
+                Console.WriteLine("\nEmployee Details using ToString():");
+                Console.WriteLine(emp.ToString());
             }
         }
     }
