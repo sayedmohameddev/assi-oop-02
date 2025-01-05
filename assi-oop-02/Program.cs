@@ -97,7 +97,7 @@ namespace assi_oop_02
             #region q-02
             HiringDate hireDate = new HiringDate(5, 5, 2020);
 
-            Console.WriteLine("\nHiring Date Details:");
+            Console.WriteLine("\nHiring Date Details::");
             hireDate.DisplayHiringDate();
             #endregion
         }
