@@ -8,7 +8,8 @@ namespace assi_oop_02
         Guest = 1,
         Developer = 2,
         Secretary = 3,
-        DBA = 4
+        DBA = 4,
+        SecurityOfficer = 5 // إضافة صلاحية لموظف الأمن (صلاحيات كاملة)
     }
     #endregion
 
@@ -82,7 +83,6 @@ namespace assi_oop_02
 
         public override string ToString()
         {
-            
             return string.Format(
                 "ID: {0}\nName: {1}\nSecurity Level: {2}\nSalary: {3}\nHire Date: {4}\nGender: {5}\nPrivilege: {6}",
                 ID,
@@ -165,6 +165,23 @@ namespace assi_oop_02
                 Console.WriteLine("\nEmployee Details using ToString():");
                 Console.WriteLine(emp.ToString());
             }
+
+            #region Q06 
+            Employee[] EmpArr = new Employee[3];
+
+            EmpArr[0] = new Employee(1, "John Doe", 4, 70000.00m, new DateTime(2018, 7, 1), "M", SecurityPrivilege.DBA);
+            EmpArr[1] = new Employee(2, "Jane Smith", 1, 40000.00m, new DateTime(2019, 3, 15), "F", SecurityPrivilege.Guest);
+            EmpArr[2] = new Employee(3, "Alex Brown", 5, 90000.00m, new DateTime(2020, 1, 10), "M", SecurityPrivilege.SecurityOfficer);
+
+            foreach (var empInArr in EmpArr)
+            {
+                Console.WriteLine("\nEmployee Details:");
+                empInArr.DisplayEmployeeInfo();
+            }
+
+            EmpArr[2].UpdateSalary(95000.00m);
+            EmpArr[0].Promote(5);
+            #endregion
         }
     }
 }
