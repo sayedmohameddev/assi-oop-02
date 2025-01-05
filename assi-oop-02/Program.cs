@@ -2,7 +2,17 @@
 
 namespace assi_oop_02
 {
-    #region q-01
+    #region Q04 
+    public enum SecurityPrivilege
+    {
+        Guest = 1,
+        Developer = 2,
+        Secretary = 3,
+        DBA = 4
+    }
+    #endregion
+
+    #region Q01 
     public class Employee
     {
         private int ID { get; set; }
@@ -10,7 +20,7 @@ namespace assi_oop_02
         private int SecurityLevel { get; set; }
         private decimal Salary { get; set; }
         private DateTime HireDate { get; set; }
-        private string _gender; 
+        private string _gender;
 
         public string Gender
         {
@@ -28,7 +38,9 @@ namespace assi_oop_02
             }
         }
 
-        public Employee(int id, string name, int securityLevel, decimal salary, DateTime hireDate, string gender)
+        public SecurityPrivilege Privilege { get; set; }
+
+        public Employee(int id, string name, int securityLevel, decimal salary, DateTime hireDate, string gender, SecurityPrivilege privilege)
         {
             ID = id;
             Name = name;
@@ -36,6 +48,7 @@ namespace assi_oop_02
             Salary = salary;
             HireDate = hireDate;
             Gender = gender;
+            Privilege = privilege;
         }
 
         public void DisplayEmployeeInfo()
@@ -46,6 +59,7 @@ namespace assi_oop_02
             Console.WriteLine($"Salary: {Salary:C}");
             Console.WriteLine($"Hire Date: {HireDate:yyyy-MM-dd}");
             Console.WriteLine($"Gender: {Gender}");
+            Console.WriteLine($"Privilege: {Privilege}");
         }
 
         public void UpdateSalary(decimal newSalary)
@@ -69,7 +83,7 @@ namespace assi_oop_02
     }
     #endregion
 
-    #region q-02
+    #region Q02 
     public class HiringDate
     {
         public int Day { get; set; }
@@ -96,8 +110,8 @@ namespace assi_oop_02
         {
             try
             {
-                #region q-01
-                Employee emp = new Employee(1, "Sayed Mohamed", 3, 60000.00m, new DateTime(2020, 5, 1), "M");
+                #region Q01 
+                Employee emp = new Employee(1, "Sayed Mohamed", 3, 60000.00m, new DateTime(2020, 5, 1), "M", SecurityPrivilege.Developer);
 
                 Console.WriteLine("Employee Details:");
                 emp.DisplayEmployeeInfo();
@@ -112,16 +126,16 @@ namespace assi_oop_02
                 emp.DisplayEmployeeInfo();
                 #endregion
 
-                #region q-02
+                #region Q02 
                 HiringDate hireDate = new HiringDate(5, 5, 2020);
 
                 Console.WriteLine("\nHiring Date Details:");
                 hireDate.DisplayHiringDate();
                 #endregion
 
-                #region q-03
+                #region Q03 =
                 Console.WriteLine("\nTesting invalid gender:");
-                emp.Gender = "X"; 
+                emp.Gender = "X";
                 #endregion
             }
             catch (Exception ex)
