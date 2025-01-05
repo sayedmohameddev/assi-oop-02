@@ -51,14 +51,35 @@ namespace assi_oop_02
             }
         }
     }
-
     #endregion
+
+    #region q-02
+    public class HiringDate
+    {
+        public int Day { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
+
+        public HiringDate(int day, int month, int year)
+        {
+            Day = day;
+            Month = month;
+            Year = year;
+        }
+
+        public void DisplayHiringDate()
+        {
+            Console.WriteLine($"Hiring Date: {Day:D2}/{Month:D2}/{Year}");
+        }
+    }
+    #endregion
+
     class Program
     {
         static void Main(string[] args)
         {
-            #region
-            Employee emp = new Employee(1, "sayed mohamed ", 3, 60000.00m, new DateTime(2020, 5, 1), "Male");
+            #region q-01
+            Employee emp = new Employee(1, "Sayed Mohamed", 3, 60000.00m, new DateTime(2020, 5, 1), "Male");
 
             Console.WriteLine("Employee Details:");
             emp.DisplayEmployeeInfo();
@@ -71,6 +92,13 @@ namespace assi_oop_02
 
             Console.WriteLine("\nFinal Employee Details:");
             emp.DisplayEmployeeInfo();
+            #endregion
+
+            #region q-02
+            HiringDate hireDate = new HiringDate(5, 5, 2020);
+
+            Console.WriteLine("\nHiring Date Details:");
+            hireDate.DisplayHiringDate();
             #endregion
         }
     }
